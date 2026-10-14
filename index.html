@@ -103,15 +103,16 @@ h1, h2, h3 { font-family: var(--display); color: var(--ink); margin: 0; letter-s
 .btn.off { border-color: var(--muted); color: var(--muted); cursor: default; }
 .btn:not(.off):hover { transform: translateY(-1px); }
 
-#about { background: var(--g-about); }
-#about h2, #skills h2, #projects h2, #recognition h2 { font-size: clamp(2.4rem, 6vw, 3.6rem); font-weight: 800; }
+#about { background: var(--g-about); opacity: 0; pointer-events: none; transition: opacity 0.6s ease; }
+#about.visible { opacity: 1; pointer-events: auto; }
+#about h2, #skills h2, #projects h2, #experience h2 { font-size: clamp(2.4rem, 6vw, 3.6rem); font-weight: 800; }
 #about .txt { display: flex; flex-direction: column; gap: 14px; }
 #about p { margin: 0; max-width: 58ch; }
 .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 6px; }
 .chip { font-family: var(--mono); font-size: 12px; padding: 6px 10px; border-radius: 6px; background: var(--accent-soft); color: var(--ink); }
 
 #skills { background: var(--g-skills); }
-#skills .head, #projects .head, #recognition .head { display: flex; flex-direction: column; gap: 12px; margin-bottom: 40px; }
+#skills .head, #projects .head, #experience .head { display: flex; flex-direction: column; gap: 12px; margin-bottom: 40px; }
 #skills .head p, #projects .head p { margin: 0; max-width: 58ch; color: var(--muted); }
 .tiles { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 16px; }
 .tile { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 20px 14px 16px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px; min-width: 0; }
@@ -147,12 +148,6 @@ h1, h2, h3 { font-family: var(--display); color: var(--ink); margin: 0; letter-s
 .mock .msgq { align-self: flex-end; background: var(--accent); border-radius: 10px 10px 2px 10px; height: 22px; width: 55%; }
 .mock .msga { align-self: flex-start; background: var(--line); border-radius: 10px 10px 10px 2px; height: 34px; width: 75%; }
 
-#recognition { background: var(--g-rec); }
-.recs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
-.rec { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 28px; display: flex; gap: 22px; align-items: center; min-width: 0; }
-.seal { flex: 0 0 auto; width: 84px; height: 84px; border-radius: 50%; border: 2px solid var(--accent); display: flex; align-items: center; justify-content: center; text-align: center; font-family: var(--mono); font-size: 10px; line-height: 1.3; color: var(--accent); letter-spacing: 0.06em; text-transform: uppercase; padding: 8px; }
-.rec b { font-family: var(--display); font-size: 1.35rem; color: var(--ink); display: block; line-height: 1.2; }
-.rec span { color: var(--muted); font-size: 15px; }
 
 #contact { background: var(--g-contact); }
 #contact .txt { display: flex; flex-direction: column; gap: 14px; align-items: flex-start; }
@@ -304,6 +299,27 @@ footer { padding-block: 28px 36px; text-align: center; font-family: var(--mono);
     </div>
   </section>
 
+  <section id="experience" class="band" style="background: linear-gradient(160deg, #E8F0F6 0%, #F0EDF8 100%);">
+    <div class="wrap">
+      <div class="head">
+        <h2>Experience</h2>
+        <p>Where I'm building real-time systems.</p>
+      </div>
+      <div style="max-width: 800px;">
+        <div style="background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 28px; margin-bottom: 24px;">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px;">
+            <div>
+              <h3 style="margin: 0 0 4px 0; font-size: 1.2rem; color: var(--ink);">Software Developer</h3>
+              <p style="margin: 0; color: var(--accent); font-weight: 500;">Waterloo Rocketry</p>
+            </div>
+            <span style="font-size: 14px; color: var(--muted);">Oct 2026 – Present</span>
+          </div>
+          <p style="margin: 12px 0 0 0; color: var(--muted); line-height: 1.65;">Developing features for Omnibus, the team's real-time data acquisition dashboard, which streams sensor data from 6 channels at 40 Hz during engine and launch testing. Building with React, TypeScript, and Socket.IO to handle high-frequency data streams.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section id="skills" class="band">
     <div class="wrap">
       <div class="head">
@@ -357,16 +373,6 @@ footer { padding-block: 28px 36px; text-align: center; font-family: var(--mono);
             </div>
           </div>
         </article>
-      </div>
-    </div>
-  </section>
-
-  <section id="recognition" class="band">
-    <div class="wrap">
-      <div class="head"><h2>Recognition</h2></div>
-      <div class="recs">
-        <div class="rec"><div class="seal">Award</div><div><b>President's Scholarship</b><span>University of Waterloo</span></div></div>
-        <div class="rec"><div class="seal">Hack</div><div><b>DeltaHacks 12</b><span>Built and launched Waterloot with two teammates</span></div></div>
       </div>
     </div>
   </section>
@@ -448,7 +454,7 @@ footer { padding-block: 28px 36px; text-align: center; font-family: var(--mono);
   /* typewriter: the first phrase is already in the page, so it reads fine without script or motion */
   var el = document.getElementById('typed');
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var words = ['a Waterloo math and CS student', 'a web developer'];
+  var words = ['a Waterloo math and CS student', 'shipping AI systems', 'turning ideas into live products'];
   if (!reduce) {
     var w = 0, c = words[0].length, del = true;
     setTimeout(function tick() {
@@ -464,6 +470,21 @@ footer { padding-block: 28px 36px; text-align: center; font-family: var(--mono);
       }
     }, 2200); /* hold the first phrase before cycling */
   }
+})();
+</script>
+
+<script>
+(function () {
+  var about = document.getElementById('about');
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (!entry.isIntersecting && entry.boundingClientRect.top < 0) {
+        about.classList.add('visible');
+        observer.unobserve(about);
+      }
+    });
+  }, { threshold: 0 });
+  observer.observe(about);
 })();
 </script>
 
