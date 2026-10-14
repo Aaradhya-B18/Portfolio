@@ -24,7 +24,7 @@
   --g-about: linear-gradient(160deg, #DDE4F0 0%, #ECF0F8 100%);
   --g-skills: linear-gradient(160deg, #DDF3EC 0%, #EAF1F6 100%);
   --g-projects: linear-gradient(160deg, #E3E8F4 0%, #EDEFF8 100%);
-  --g-rec: linear-gradient(160deg, #F2F4FA 0%, #E9EDF7 100%);
+  --g-experience: linear-gradient(160deg, #DFF0F7 0%, #EAF2F9 100%);
   --g-contact: linear-gradient(160deg, #F3E1E6 0%, #E4E2F2 100%);
   --nav-bg: rgba(238, 241, 249, 0.92);
   --display: 'Bricolage Grotesque', 'Helvetica Neue', Arial, sans-serif;
@@ -39,7 +39,7 @@
     --g-about: linear-gradient(160deg, #0F1630 0%, #121A38 100%);
     --g-skills: linear-gradient(160deg, #0D1F2A 0%, #101A33 100%);
     --g-projects: linear-gradient(160deg, #0F1630 0%, #141A3A 100%);
-    --g-rec: linear-gradient(160deg, #0D1329 0%, #111833 100%);
+    --g-experience: linear-gradient(160deg, #0E1728 0%, #121D37 100%);
     --g-contact: linear-gradient(160deg, #241832 0%, #171B3C 100%);
     --nav-bg: rgba(12, 17, 36, 0.92);
     color-scheme: dark;
@@ -52,7 +52,7 @@
   --g-about: linear-gradient(160deg, #0F1630 0%, #121A38 100%);
   --g-skills: linear-gradient(160deg, #0D1F2A 0%, #101A33 100%);
   --g-projects: linear-gradient(160deg, #0F1630 0%, #141A3A 100%);
-  --g-rec: linear-gradient(160deg, #0D1329 0%, #111833 100%);
+  --g-experience: linear-gradient(160deg, #0E1728 0%, #121D37 100%);
   --g-contact: linear-gradient(160deg, #241832 0%, #171B3C 100%);
   --nav-bg: rgba(12, 17, 36, 0.92);
   color-scheme: dark;
@@ -105,6 +105,8 @@ h1, h2, h3 { font-family: var(--display); color: var(--ink); margin: 0; letter-s
 
 #about { background: var(--g-about); opacity: 0; pointer-events: none; transition: opacity 0.6s ease; }
 #about.visible { opacity: 1; pointer-events: auto; }
+
+#experience { background: var(--g-experience); }
 #about h2, #skills h2, #projects h2, #experience h2 { font-size: clamp(2.4rem, 6vw, 3.6rem); font-weight: 800; }
 #about .txt { display: flex; flex-direction: column; gap: 14px; }
 #about p { margin: 0; max-width: 58ch; }
@@ -299,7 +301,7 @@ footer { padding-block: 28px 36px; text-align: center; font-family: var(--mono);
     </div>
   </section>
 
-  <section id="experience" class="band" style="background: linear-gradient(160deg, #E8F0F6 0%, #F0EDF8 100%);">
+  <section id="experience" class="band">
     <div class="wrap">
       <div class="head">
         <h2>Experience</h2>
